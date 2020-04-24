@@ -1,1 +1,3 @@
 # ColumbiaDiningApp
+
+firstScreen: columbiaDining
