@@ -27,16 +27,12 @@ function App() {
             headerRight: () => (<LogoTitle/>),
             headerStyle: {
               backgroundColor: '#62A8E5',
-            },
-            headerTintColor: '#fff'
+            }
           }}       
         />
         <Stack.Screen name="Details" component={DetailsScreen} 
           options={{
-            headerStyle: {
-              backgroundColor: '#62A8E5',
-            },
-            headerTintColor: '#fff'
+            headerStyle: {backgroundColor: '#62A8E5'}
           }}
         />
       </Stack.Navigator>

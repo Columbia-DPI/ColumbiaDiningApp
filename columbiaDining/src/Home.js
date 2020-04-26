@@ -23,11 +23,13 @@ function changeTime (){
 }
 */
 
+//!!!Once we connect to the backend, send name to the onPress function
+
 export function HomeScreen({ navigation }) {
     return (
       
-          <View style={styles.container}>
-          <Card onPress={() => navigation.navigate('Details')}>
+        <View style={styles.container}>
+          <Card onPress={() => navigation.navigate('Details', {location: "Ferris Booth"})}> 
             <Diningcard
               name="Ferris Booth"
               breakfast="9:00-12:00"
@@ -37,7 +39,7 @@ export function HomeScreen({ navigation }) {
             />
           </Card>
           
-          <Card style={styles.card} onPress={() => navigation.navigate('Details')}>
+          <Card onPress={() => navigation.navigate('Details', {location: "John Jay"})}>
             <Diningcard
               name="John Jay"
               breakfast="9:00-12:00"
@@ -47,7 +49,7 @@ export function HomeScreen({ navigation }) {
             />
           </Card>
         
-          <Card style={styles.card} onPress={() => navigation.navigate('Details')}>
+          <Card onPress={() => navigation.navigate('Details', {location: "JJ's Place"})}>
             <Diningcard
               name="JJ's Place"
               breakfast="9:00-12:00"
@@ -57,7 +59,7 @@ export function HomeScreen({ navigation }) {
             />
           </Card>
         
-          <Card style={styles.card} onPress={() => navigation.navigate('Details')}>
+          <Card onPress={() => navigation.navigate('Details', {location: "Hewitt"})}>
             <Diningcard
               name="Hewitt"
               breakfast="9:00-12:00"
@@ -67,7 +69,7 @@ export function HomeScreen({ navigation }) {
             />
           </Card>
         
-          <Card style={styles.card} onPress={() => navigation.navigate('Details')}>
+          <Card onPress={() => navigation.navigate('Details', {location: "Diana"})}>
             <Diningcard
               name="Diana"
               breakfast="9:00-12:00"
@@ -83,8 +85,8 @@ export function HomeScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingBottom: '1.5%',
-    paddingTop: '1.5%',
+    paddingBottom: '2%',
+    paddingTop: '2%',
     flexDirection: 'column'
   }
 });

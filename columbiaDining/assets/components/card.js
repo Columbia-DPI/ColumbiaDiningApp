@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { Text, View, StyleSheet, Image, Card, Animated, TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet, Image, Animated, TouchableOpacity } from 'react-native';
 
 
 
-export default function Test(props){
+export default function Card(props){
     return(
         <TouchableOpacity 
             activeOpacity={0.5}
@@ -29,7 +29,7 @@ export function Diningcard(props) {
           <Animated.View
             style={
               ([StyleSheet.absoluteFill],
-              { backgroundColor: '#62A8E5', width: props.density })
+              { backgroundColor: '#B3DAFF', width: props.density })
             }
           />
         </View>
@@ -46,10 +46,10 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         justifyContent: 'space-between',
         padding: '5%',
-        marginTop: '1.5%',
-        marginBottom: '1.5%',
-        marginRight: '3%',
-        marginLeft: '3%'
+        marginTop: '2%',
+        marginBottom: '2%',
+        marginRight: '4%',
+        marginLeft: '4%'
     },
     cardTitle: {
       fontSize: 20,
