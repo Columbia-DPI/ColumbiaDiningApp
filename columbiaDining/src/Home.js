@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, StatusBar, Image, Animated, Button, Text } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import Card from '../assets/components/card.js';
 import { Diningcard } from '../assets/components/card.js';
 
@@ -23,63 +23,62 @@ function changeTime (){
 }
 */
 
-//!!!Once we connect to the backend, send name to the onPress function
+//connect to db and send name through onPress
 
 export function HomeScreen({ navigation }) {
-    return (
+  return (
+    <View style={styles.container}>
+      <Card onPress={() => navigation.navigate('Details', {diningHall: "Ferris Booth"})}> 
+        <Diningcard
+          name="Ferris Booth"
+          breakfast="9:00-12:00"
+          lunch="12:00-4:00"
+          dinner="5:00-8:00"
+          density="70%"
+        />
+      </Card>
       
-        <View style={styles.container}>
-          <Card onPress={() => navigation.navigate('Details', {location: "Ferris Booth"})}> 
-            <Diningcard
-              name="Ferris Booth"
-              breakfast="9:00-12:00"
-              lunch="12:00-4:00"
-              dinner="5:00-8:00"
-              density="70%"
-            />
-          </Card>
-          
-          <Card onPress={() => navigation.navigate('Details', {location: "John Jay"})}>
-            <Diningcard
-              name="John Jay"
-              breakfast="9:00-12:00"
-              lunch="12:00-4:00"
-              dinner="5:00-8:00"
-              density="10%"
-            />
-          </Card>
-        
-          <Card onPress={() => navigation.navigate('Details', {location: "JJ's Place"})}>
-            <Diningcard
-              name="JJ's Place"
-              breakfast="9:00-12:00"
-              lunch="12:00-4:00"
-              dinner="5:00-8:00"
-              density="80%"
-            />
-          </Card>
-        
-          <Card onPress={() => navigation.navigate('Details', {location: "Hewitt"})}>
-            <Diningcard
-              name="Hewitt"
-              breakfast="9:00-12:00"
-              lunch="12:00-4:00"
-              dinner="5:00-7:45"
-              density="70%"
-            />
-          </Card>
-        
-          <Card onPress={() => navigation.navigate('Details', {location: "Diana"})}>
-            <Diningcard
-              name="Diana"
-              breakfast="9:00-12:00"
-              lunch="12:00-4:00"
-              dinner="5:00-8:00"
-              density="40%"
-            />
-          </Card>
-          </View>
-    );
+      <Card onPress={() => navigation.navigate('Details', {diningHall: "John Jay"})}>
+        <Diningcard
+          name="John Jay"
+          breakfast="9:00-12:00"
+          lunch="12:00-4:00"
+          dinner="5:00-8:00"
+          density="10%"
+        />
+      </Card>
+    
+      <Card onPress={() => navigation.navigate('Details', {diningHall: "JJ's Place"})}>
+        <Diningcard
+          name="JJ's Place"
+          breakfast="9:00-12:00"
+          lunch="12:00-4:00"
+          dinner="5:00-8:00"
+          density="80%"
+        />
+      </Card>
+    
+      <Card onPress={() => navigation.navigate('Details', {diningHall: "Hewitt"})}>
+        <Diningcard
+          name="Hewitt"
+          breakfast="9:00-12:00"
+          lunch="12:00-4:00"
+          dinner="5:00-7:45"
+          density="70%"
+        />
+      </Card>
+    
+      <Card onPress={() => navigation.navigate('Details', {diningHall: "Diana"})}>
+        <Diningcard
+          name="Diana"
+          breakfast="9:00-12:00"
+          lunch="12:00-4:00"
+          dinner="5:00-8:00"
+          density="40%"
+        />
+      </Card>
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
