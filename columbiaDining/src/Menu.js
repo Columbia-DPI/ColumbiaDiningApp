@@ -2,9 +2,9 @@ import React from 'react';
 import {StyleSheet, Text, View, Button } from 'react-native';
 
 
-export function Temp({ route, navigation}) {
+export function Menu({ route, navigation}) {
   return (
-    <Text>HIHIHIHIHIHIH</Text>
+    <Text>MENU:</Text>
   );
 }
 
