@@ -1,19 +1,14 @@
 import React from 'react';
-import { View, StyleSheet, StatusBar, Image, Animated, Button } from 'react-native';
+import { View, StyleSheet, StatusBar, Image, Animated, Button, Text } from 'react-native';
+import Card from '../assets/components/card.js';
+import { Diningcard } from '../assets/components/card.js';
 
-import Diningcard from '../assets/components/card.js';
-import Header from '../assets/components/header.js';
-import { Card } from 'react-native-paper';
-
-
-
-
-
-
-
-
+//import Header from '../assets/components/header.js'; //Can't use header with nav bar
+//import { ScrollView } from 'react-native-gesture-handler'; Not needed if it fits in 1 screen
 
 /*
+date: new Date().getMinutes(),
+
 const times = [
   'Breakfast: 5:00-8:00',
   'Lunch: 11:00-4:00',
@@ -28,13 +23,11 @@ function changeTime (){
 }
 */
 
-
 export function HomeScreen({ navigation }) {
     return (
-      <View style={styles.container}>
-        <Header />
-        <View style={styles.container}>
-          <Card style={styles.card} onPress={() => navigation.navigate('Details')}>
+      
+          <View style={styles.container}>
+          <Card onPress={() => navigation.navigate('Details')}>
             <Diningcard
               name="Ferris Booth"
               breakfast="9:00-12:00"
@@ -43,8 +36,7 @@ export function HomeScreen({ navigation }) {
               density="70%"
             />
           </Card>
-        </View>
-        <View style={styles.container}>
+          
           <Card style={styles.card} onPress={() => navigation.navigate('Details')}>
             <Diningcard
               name="John Jay"
@@ -54,8 +46,7 @@ export function HomeScreen({ navigation }) {
               density="10%"
             />
           </Card>
-        </View>
-        <View style={styles.container}>
+        
           <Card style={styles.card} onPress={() => navigation.navigate('Details')}>
             <Diningcard
               name="JJ's Place"
@@ -65,8 +56,7 @@ export function HomeScreen({ navigation }) {
               density="80%"
             />
           </Card>
-        </View>
-        <View style={styles.container}>
+        
           <Card style={styles.card} onPress={() => navigation.navigate('Details')}>
             <Diningcard
               name="Hewitt"
@@ -76,8 +66,7 @@ export function HomeScreen({ navigation }) {
               density="70%"
             />
           </Card>
-        </View>
-        <View style={styles.container}>
+        
           <Card style={styles.card} onPress={() => navigation.navigate('Details')}>
             <Diningcard
               name="Diana"
@@ -87,28 +76,15 @@ export function HomeScreen({ navigation }) {
               density="40%"
             />
           </Card>
-        </View>
-      </View>
+          </View>
     );
 }
-
-
-
-
-
-
-
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    backgroundColor: '#ecf0f1',
-    padding: 0,
-  },
-  card: {
-    marginBottom: '2%',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
+    paddingBottom: '1.5%',
+    paddingTop: '1.5%',
+    flexDirection: 'column'
+  }
 });

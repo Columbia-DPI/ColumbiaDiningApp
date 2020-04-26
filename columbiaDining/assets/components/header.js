@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
   header: {
     width: '100%',
     height: '15%',
-    backgroundColor: '#B9D9EB',
+    backgroundColor: '#62A8E5',
     paddingTop: Constants.statusBarHeight,
     flexDirection: 'row',
     alignItems: 'center',
