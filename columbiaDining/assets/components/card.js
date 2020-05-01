@@ -47,11 +47,11 @@ export function Foodcard(props) {
   var foods = []
   for(let i = 0; i < props.items.length; i++){
     if(props.items[i].includes('Vegetarian')){
-      foods.push(<View style={styles.foodnameVegetarian}><Text>{props.items[i]}</Text></View>)
+      foods.push(<View style={styles.foodnameVegetarian} key={i}><Text>{props.items[i]}</Text></View>)
     } else if (props.items[i].includes('Vegan')){
-      foods.push(<View style={styles.foodnameVegan}><Text>{props.items[i]}</Text></View>)
+      foods.push(<View style={styles.foodnameVegan} key={i}><Text>{props.items[i]}</Text></View>)
     } else {
-      foods.push(<View style={styles.foodnameBase}><Text>{props.items[i]}</Text></View>)
+      foods.push(<View style={styles.foodnameBase} key={i}><Text>{props.items[i]}</Text></View>)
     }
   }
   return (

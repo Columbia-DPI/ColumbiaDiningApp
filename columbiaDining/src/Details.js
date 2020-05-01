@@ -18,6 +18,7 @@ export function DetailsScreen({ route, navigation}) {
         name= {data[i]}
         component={Menu}
         options={{title: meals[i]}} //title is what is shown on tab
+        key={i}
       />
     )
   }
