@@ -2,22 +2,49 @@ import React from 'react';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { Menu } from './Menu.js';
 
-const Tab = createMaterialTopTabNavigator();
-export function DetailsScreen({ route, navigation}) {
+//Dummy Data
+import ferris_menu from '../dummy/ferris_menu.json'; 
+import johnjay_menu from '../dummy/johnjay_menu.json'; 
+import jjs_menu from '../dummy/jjs_menu.json'; 
+import hewitt_menu from '../dummy/hewitt_menu.json'; 
+import diana_menu from '../dummy/diana_menu.json'; 
 
-  const { diningHall } = route.params;
-  navigation.setOptions({title: diningHall}); //set the navigation header to the correct dining hall
+var menu_data;
+export function get_menu_data(){
+  return menu_data;
+}
+
+const Tab = createMaterialTopTabNavigator();
+export function DetailsScreen({ route, navigation }) {
   
-  const meals = ["Breakfast", "Lunch", "Dinner"]; //will change depending on what dining hall it is e.g jjs doesnt have 3 meals
-  const data = meals.map((meal) => '{"diningHall":"' + diningHall + '","meal":"' + meal + '"}')
-  
+  const { diningHall } = route.params; //Get name of diningHall from route sent from Home
+
+  //Look up in the db using diningHall
+  if (diningHall=="Ferris Booth"){
+    menu_data = ferris_menu;
+  } else if(diningHall=="John Jay"){
+    menu_data = johnjay_menu;
+  } else if(diningHall=="JJ's Place"){
+    menu_data = jjs_menu;
+  } else if(diningHall=="Hewitt"){
+    menu_data = hewitt_menu;
+  } else if(diningHall=="Diana"){
+    menu_data = diana_menu;
+  }
+  //Replace this with actual db lookup using diningHall
+  //Note: In order for this to work, the name of dining hall in open-times table must be the exact same as the name in the menus table. bc diningHall is sent from Home
+
+  navigation.setOptions({title: menu_data.name}); //Set title of top navbar
+  const meals = menu_data.times.map(function(timeslot){ //list of timeslot names to use for tab names
+    return timeslot.name;
+  });
+
   var mealTabs = []
   for(let i = 0; i < meals.length; i++){  
     mealTabs.push(
       <Tab.Screen 
-        name= {data[i]}
+        name= {meals[i]}
         component={Menu}
-        options={{title: meals[i]}} //title is what is shown on tab
         key={i}
       />
     )
@@ -25,19 +52,13 @@ export function DetailsScreen({ route, navigation}) {
 
   return (
     <Tab.Navigator
-      initialRouteName= 'temp'//change this
+      initialRouteName= 'tab2 Lunch'//change this
       tabBarOptions={{
         style: { backgroundColor: '#B3DAFF', },
       }}
       backBehavior='none'
     >
-    
-    {mealTabs}
-      
+    {mealTabs} 
     </Tab.Navigator>
-
   );
 }
-
-
-

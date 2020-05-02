@@ -1,48 +1,35 @@
 import React from 'react';
-import {StyleSheet, View, ScrollView } from 'react-native';
+import {StyleSheet, View, ScrollView, Text } from 'react-native';
 import { Card_nopress, Foodcard } from '../assets/components/card.js';
+import { get_menu_data } from './Details.js'
 
 export function Menu({ route, navigation}) {
-  const data = JSON.parse(route.name)
-  const diningHall = data.diningHall; //'Ferris Booth', 'John Jay', 'JJ's Place', etc.
-  const meal = data.meal; //'Breakfast', 'Lunch', or 'Dinner'
-  
-  //use these 2 search terms to look up menu items in db
-  //use results from db to create different Foodcards (Action Line, Main Line, Pasta, Soup, Dessert, etc. however columbia dining groups things)
-  //the food items are inputted as an array
+  const menu_data = get_menu_data();
+  var menu;
+  for(let i = 0; i < menu_data.times.length; i++){ //Find the right time slot for this tab
+    if(menu_data.times[i].name == route.name){
+      menu = menu_data.times[i].groups;
+      break;
+    }
+  }
+
+  var groups = []
+  for(let i = 0; i < menu.length; i++){  //Create different Foodcard for each group in menu
+    groups.push(
+      <Card_nopress>
+        <Foodcard
+          name={menu[i].name}
+          items={menu[i].foods}
+        />
+      </Card_nopress>
+    )
+  }
 
   return (
     <ScrollView>
-    <View style={styles.container}>
-        
-      <Card_nopress> 
-        <Foodcard
-            name="Action Line"
-            items={["Waffles","Chicken"]}
-        />
-      </Card_nopress>
-
-      <Card_nopress> 
-        <Foodcard
-            name="Main Line"
-            items={["Pancackes", "Potato Hash", "Elbow Pasta", "Marinara (Vegan)", "Grilled Vegetables (Vegetarian)"]}
-        />
-      </Card_nopress>
-
-      <Card_nopress> 
-        <Foodcard
-            name="Vegan Station"
-            items={["Vegan French Toast", "Vegan Pancackes", "Oatmeal (Vegan)"]}
-        />
-      </Card_nopress>
-
-      <Card_nopress> 
-        <Foodcard
-            name="The Regulars"
-            items={["Cheese Pizza", "Sandwich"]}
-        />
-      </Card_nopress>
-    </View>
+      <View style={styles.container}>
+        { groups }        
+      </View>
     </ScrollView>
   );
 }
