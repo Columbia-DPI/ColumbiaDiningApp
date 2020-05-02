@@ -2,6 +2,7 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import Card from '../assets/components/card.js';
 import { Diningcard } from '../assets/components/card.js';
+import dininghall_overview from '../dummy/dininghall_overview.json';
 
 //import Header from '../assets/components/header.js'; //Can't use header with nav bar
 //import { ScrollView } from 'react-native-gesture-handler'; Not needed if it fits in 1 screen
@@ -10,9 +11,9 @@ import { Diningcard } from '../assets/components/card.js';
 date: new Date().getMinutes(),
 
 const times = [
-  'Breakfast: 5:00-8:00',
+  'Breakfast: Dinner: 12:00-4:00',
   'Lunch: 11:00-4:00',
-  'Dinner: 5:00-8:00',
+  'Dinner: Dinner: 12:00-4:00',
 ];
 
 function changeTime (){
@@ -26,57 +27,27 @@ function changeTime (){
 //connect to db and send name through onPress
 
 export function HomeScreen({ navigation }) {
-  return (
-    <View style={styles.container}>
+  var halls = dininghall_overview.dininghalls
+  var cards = []
+  for(let i = 0; i < halls.length; i++){
+    cards.push(
       <Card onPress={() => navigation.navigate('Details', {diningHall: "Ferris Booth"})}> 
         <Diningcard
-          name="Ferris Booth"
-          breakfast="9:00-12:00"
-          lunch="12:00-4:00"
-          dinner="5:00-8:00"
-          density="70%"
+          name= {halls[i].name}
+          items = {halls[i].times}
+          density= {halls[i].density}
         />
       </Card>
-      
-      <Card onPress={() => navigation.navigate('Details', {diningHall: "John Jay"})}>
-        <Diningcard
-          name="John Jay"
-          breakfast="9:00-12:00"
-          lunch="12:00-4:00"
-          dinner="5:00-8:00"
-          density="10%"
-        />
-      </Card>
-    
-      <Card onPress={() => navigation.navigate('Details', {diningHall: "JJ's Place"})}>
-        <Diningcard
-          name="JJ's Place"
-          breakfast="9:00-12:00"
-          lunch="12:00-4:00"
-          dinner="5:00-8:00"
-          density="80%"
-        />
-      </Card>
-    
-      <Card onPress={() => navigation.navigate('Details', {diningHall: "Hewitt"})}>
-        <Diningcard
-          name="Hewitt"
-          breakfast="9:00-12:00"
-          lunch="12:00-4:00"
-          dinner="5:00-7:45"
-          density="70%"
-        />
-      </Card>
-    
-      <Card onPress={() => navigation.navigate('Details', {diningHall: "Diana"})}>
-        <Diningcard
-          name="Diana"
-          breakfast="9:00-12:00"
-          lunch="12:00-4:00"
-          dinner="5:00-8:00"
-          density="40%"
-        />
-      </Card>
+    )
+  }
+  
+  
+  
+  
+  
+  return (
+    <View style={styles.container}>
+      { cards }
     </View>
   );
 }
