@@ -3,24 +3,21 @@ import { View, StyleSheet, ActivityIndicator, Text } from 'react-native';
 import Card from '../assets/components/card.js';
 import { Diningcard } from '../assets/components/card.js';
 
-//connect to db and send name through onPress
 const url = "http://columbia-dining.herokuapp.com/home";
-let hallDefault;
 
 export class HomeScreen extends React.Component {
   constructor({navigation}){
     super();
     this.navigation = navigation;
-    this.state = {loaded: false}
+    this.state = {loaded: false, data: null}
   }
   async componentDidMount(){
     try {
-      const response = await fetch(url) //GET the json
-        ;
+      const response = await fetch(url);
       const responseJson = await response.json();
-      hallDefault = responseJson;
       this.setState({
-        loaded: true
+        loaded: true,
+        data: responseJson
       });
     }
     catch (error) {
@@ -29,7 +26,7 @@ export class HomeScreen extends React.Component {
   }
   render() {
     if(this.state.loaded){
-      const halls = hallDefault.dininghalls;
+      const halls = this.state.data.dininghalls;
       let cards = [];
       for(let i = 0; i < halls.length; i++){
         cards.push(
@@ -50,8 +47,8 @@ export class HomeScreen extends React.Component {
         </View>
       );
 
-  } else{
-    /*-------Loading Screen-------*/
+    } else{
+      /*-------Loading Screen-------*/
       return (
         <View style={styles.container}>
           <ActivityIndicator/>
