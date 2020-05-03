@@ -25,7 +25,7 @@ export function Card_nopress(props){
 export function Diningcard(props) {
   var times = []
   for(let i = 0; i < props.items.length; i++){
-    times.push(<Text style={styles.timeText}>{props.items[i]}</Text>)
+    times.push(<Text style={styles.timeText} key={props.items[i].toString()}>{props.items[i]}</Text>)
   }
   return (
     <View style={styles.diningCard}>
@@ -49,11 +49,11 @@ export function Foodcard(props) {
   var foods = []
   for(let i = 0; i < props.items.length; i++){
     if(props.items[i].includes('Vegetarian')){
-      foods.push(<View style={styles.foodnameVegetarian} key={i}><Text>{props.items[i]}</Text></View>)
+      foods.push(<View style={styles.foodnameVegetarian} key={props.items[i].toString()}><Text>{props.items[i]}</Text></View>)
     } else if (props.items[i].includes('Vegan')){
-      foods.push(<View style={styles.foodnameVegan} key={i}><Text>{props.items[i]}</Text></View>)
+      foods.push(<View style={styles.foodnameVegan} key={props.items[i].toString()}><Text>{props.items[i]}</Text></View>)
     } else {
-      foods.push(<View style={styles.foodnameBase} key={i}><Text>{props.items[i]}</Text></View>)
+      foods.push(<View style={styles.foodnameBase} key={props.items[i].toString()}><Text>{props.items[i]}</Text></View>)
     }
   }
   return (
