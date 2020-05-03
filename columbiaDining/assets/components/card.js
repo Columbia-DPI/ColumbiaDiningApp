@@ -23,13 +23,15 @@ export function Card_nopress(props){
 }
 
 export function Diningcard(props) {
+  var times = []
+  for(let i = 0; i < props.items.length; i++){
+    times.push(<Text style={styles.timeText}>{props.items[i]}</Text>)
+  }
   return (
     <View style={styles.diningCard}>
       <View>
         <Text style={styles.cardTitle}>{props.name}</Text>
-        <Text style={styles.timeText}>Breakfast: {props.breakfast}</Text>
-        <Text style={styles.timeText}>Lunch: {props.lunch}</Text>
-        <Text style={styles.timeText}>Dinner: {props.dinner}</Text>
+        { times }
       </View>
       <View style={styles.progressBar}>
         <Animated.View
