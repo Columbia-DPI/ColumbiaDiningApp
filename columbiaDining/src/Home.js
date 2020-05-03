@@ -1,32 +1,64 @@
 import React, { Children } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, ActivityIndicator, Text } from 'react-native';
 import Card from '../assets/components/card.js';
 import { Diningcard } from '../assets/components/card.js';
-import dininghall_overview from '../dummy/dininghall_overview.json';
 
 //connect to db and send name through onPress
+const url = "http://columbia-dining.herokuapp.com/home";
+let hallDefault;
 
-export function HomeScreen({ navigation }) {
-  var halls = dininghall_overview.dininghalls
-  var cards = []
-  for(let i = 0; i < halls.length; i++){
-    cards.push(
-      <Card onPress={() => navigation.navigate('Details', {diningHall: halls[i].name})} key={JSON.stringify(halls[i])}> 
-        <Diningcard
-          name= {halls[i].name}
-          items = {halls[i].times}
-          density= {halls[i].density}
-          key={JSON.stringify(halls[i])}
-        />
-      </Card>
-    )
+export class HomeScreen extends React.Component {
+  constructor({navigation}){
+    super();
+    this.navigation = navigation;
+    this.state = {loaded: false}
   }
-  
-  return (
-    <View style={styles.container}>
-      { cards }
-    </View>
-  );
+  async componentDidMount(){
+    try {
+      const response = await fetch(url) //GET the json
+        ;
+      const responseJson = await response.json();
+      hallDefault = responseJson;
+      this.setState({
+        loaded: true
+      });
+    }
+    catch (error) {
+      console.log(error);
+    }
+  }
+  render() {
+    if(this.state.loaded){
+      const halls = hallDefault.dininghalls;
+      let cards = [];
+      for(let i = 0; i < halls.length; i++){
+        cards.push(
+          <Card onPress={() => this.navigation.navigate('Details', {diningHall: halls[i].name})} key={JSON.stringify(halls[i])}> 
+            <Diningcard
+              name= {halls[i].name}
+              items = {halls[i].times}
+              density= {halls[i].density}
+              key={JSON.stringify(halls[i])}
+            />
+          </Card>
+        )
+      }
+    
+      return (
+        <View style={styles.container}>
+          { cards }
+        </View>
+      );
+
+  } else{
+    /*-------Loading Screen-------*/
+      return (
+        <View style={styles.container}>
+          <ActivityIndicator/>
+        </View>
+      );
+    }
+  }
 }
 
 const styles = StyleSheet.create({

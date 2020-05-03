@@ -26,6 +26,9 @@ export function Diningcard(props) {
   var times = []
   for(let i = 0; i < props.items.length; i++){
     times.push(<Text style={styles.timeText} key={props.items[i].toString()}>{props.items[i]}</Text>)
+    if (props.items.length < 3 && i == props.items.length-1){
+      times.push(<Text style={styles.timeText} key ={"blank"}></Text>)
+    }
   }
   return (
     <View style={styles.diningCard}>
