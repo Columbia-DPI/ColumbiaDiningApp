@@ -68,9 +68,6 @@ export function Foodcard(props) {
 
 
 
-
-
-
 const styles = StyleSheet.create({
   basicCard: {
     borderRadius: 15,
