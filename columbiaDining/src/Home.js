@@ -1,5 +1,5 @@
 import React, { Children } from 'react';
-import { View, StyleSheet, ActivityIndicator, Text } from 'react-native';
+import { View, StyleSheet, ActivityIndicator, Text, ScrollView } from 'react-native';
 import Card from '../assets/components/card.js';
 import { Diningcard } from '../assets/components/card.js';
 
@@ -42,9 +42,9 @@ export class HomeScreen extends React.Component {
       }
     
       return (
-        <View style={styles.container}>
-          { cards }
-        </View>
+        <ScrollView>
+          <View style={styles.container}>{cards}</View>
+        </ScrollView>
       );
 
     } else{
